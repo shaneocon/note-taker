@@ -30,9 +30,17 @@ const api = function(app) {
 
         res.json(newNote);
     });
+
+    app.delete("/api/notes/:id", function(req,res) {
+
+        console.log("Req.params:", req.params);
+        let chosenId = parseInt(req.params.id);
+        console.log(chosenId);
+        
+        for (let i = 0; i < contents.length; i++) { }
+
+    })
 }
-
-
 
 
 module.exports = api;
