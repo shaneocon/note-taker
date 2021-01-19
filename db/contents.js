@@ -1,8 +1,8 @@
-const contents = 
+const textContents = 
 [{
     "title":"Test",
     "text":"this is a test",
-    "id":"1"
+    "id": "1"
 }];
 
-module.exports = contents;
+module.exports = textContents;
