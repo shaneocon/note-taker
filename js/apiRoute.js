@@ -1,4 +1,4 @@
-const noteContents = require("../db/contents");
+const Notecontents = require("../db/contents");
 
 const fs = require("fs");
 const util = require("util");
@@ -24,8 +24,8 @@ const api = function(app) {
         contents.push(newNote);
 
 
-        writeFileAsync("./db/noteContents.json", JSON.stringify(noteContents)).then(function() {
-            console.log("noteContents.json updated");
+        writeFileAsync("./db/db.json", JSON.stringify(contents)).then(function() {
+            console.log("db.json updated");
         });
 
         res.json(newNote);
@@ -37,10 +37,21 @@ const api = function(app) {
         let chosenId = parseInt(req.params.id);
         console.log(chosenId);
         
-        for (let i = 0; i < contents.length; i++) { }
+        for (let i = 0; i < contents.length; i++) {
+            if (chosenId === contents[i].id) {
+                contents.splice(i, 1);
 
-    })
-}
+                let noteJSON = JSON.stringify(contents, null, 2);
+
+                writeFileAsync("./db/db.json", noteJSON).then(function() {
+                    console.log("Chosen note deleted.");
+                });
+            }
+        }
+        res.json(contents);
+
+    });
+};
 
 
 module.exports = api;
