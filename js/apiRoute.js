@@ -1,5 +1,3 @@
-// const Notecontents = require("../db/contents");
-
 const fs = require("fs");
 const util = require("util");
 const contents = require("../db/contents");
