@@ -32,18 +32,18 @@ const api = function(app) {
     app.delete("/api/notes/:id", function(req, res) {
         let noteId = req.params.id;
         let newId = 0;
-        // Console logging deleted note ID for reference
+       
         console.log(`Deleting note with ID ${noteId}`);
-        // Filter data of current note, and return current note ID when note equal to noteId (required params ID)
+        
         contents = contents.filter(currentNote => {
            return currentNote.id != noteId;
         });
-        // For current note data, change note ID to string and add to newId (originally 0)
+       
         for (currentNote of contents) {
             currentNote.id = newId.toString();
             newId++;
         }
-        // Write to files with updated json data
+        
         fs.writeFileSync("./db/db.json", JSON.stringify(contents));
         res.json(contents);
     });
